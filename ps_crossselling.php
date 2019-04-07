@@ -253,7 +253,9 @@ class Ps_Crossselling extends Module implements WidgetInterface
                     $productIds[] = $product['id_product'];
                 }
             }
-        } else if (!empty($configuration['product']['id_product'])) {
+        }
+
+        if (!empty($configuration['product']['id_product']) && !in_array($configuration['product']['id_product'], $productIds)) {
             $productIds[] = $configuration['product']['id_product'];
         }
 
