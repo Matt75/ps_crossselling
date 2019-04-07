@@ -245,9 +245,10 @@ class Ps_Crossselling extends Module implements WidgetInterface
     protected function getProductIds($hookName, array $configuration)
     {
         $productIds = [];
+        $cart = (isset($configuration['cart'])) ? $configuration['cart'] : $this->context->cart;
 
-        if (isset($configuration['cart']) && Validate::isLoadedObject($configuration['cart'])) {
-            $products = $configuration['cart']->getProducts();
+        if (Validate::isLoadedObject($cart)) {
+            $products = $cart->getProducts();
             if (!empty($products)) {
                 foreach ($products as $product) {
                     $productIds[] = $product['id_product'];
